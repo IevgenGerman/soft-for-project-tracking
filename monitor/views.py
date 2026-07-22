@@ -28,26 +28,29 @@ def index(request):
 class LocationListView(LoginRequiredMixin, generic.ListView):
     model = Location
     paginate_by = 5
-
+    template_name = "monitor/location/list.html"
 
 class LocationDetailView(LoginRequiredMixin, generic.DetailView):
     model = Location
-
+    template_name = "monitor/location/detail.html"
 
 class LocationCreateView(LoginRequiredMixin, generic.CreateView):
     model = Location
     fields = "__all__"
+    template_name = "monitor/location/form.html"
     success_url = reverse_lazy("monitor:location-list")
 
 
 class LocationUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Location
     fields = "__all__"
+    template_name = "monitor/location/form.html"
     success_url = reverse_lazy("monitor:location-list")
 
 
 class LocationDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Location
+    template_name = "monitor/location/confirm_delete.html"
     success_url = reverse_lazy("monitor:location-list")
 
 
