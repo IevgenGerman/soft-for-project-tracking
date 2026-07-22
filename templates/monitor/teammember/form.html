@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h1>
+    {% if form.instance.pk %}
+      Update team member
+    {% else %}
+      Add team member
+    {% endif %}
+  </h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="d-flex gap-2 mt-3">
+      <button type="submit" class="btn btn-success">Save</button>
+      <a href="{% url 'monitor:teammember-list' %}"
+         class="btn btn-secondary">
+        &larr; Back to list
+      </a>
+    </div>
+  </form>
+{% endblock %}

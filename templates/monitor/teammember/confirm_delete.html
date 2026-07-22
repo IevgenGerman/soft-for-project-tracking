@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Delete team member</h1>
+
+  <p>
+    Are you sure you want to delete
+    "{{ teammember.first_name }} {{ teammember.last_name }}"?
+  </p>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-danger">Delete</button>
+      <a href="{% url 'monitor:teammember-list' %}"
+         class="btn btn-secondary">
+        Cancel
+      </a>
+    </div>
+  </form>
+{% endblock %}

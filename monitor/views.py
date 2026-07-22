@@ -125,6 +125,7 @@ class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
 class TeamMemberListView(LoginRequiredMixin, generic.ListView):
     model = TeamMember
     paginate_by = 5
+    template_name = "monitor/teammember/list.html"
 
     def get_queryset(self):
         return TeamMember.objects.prefetch_related("languages", "team")
@@ -135,11 +136,13 @@ class TeamMemberDetailView(LoginRequiredMixin, generic.DetailView):
     queryset = TeamMember.objects.prefetch_related(
         "languages", "team", "team__projects"
     )
+    template_name = "monitor/teammember/detail.html"
 
 
 class TeamMemberCreateView(LoginRequiredMixin, generic.CreateView):
     model = TeamMember
     form_class = TeamMemberCreationForm
+    template_name = "monitor/teammember/form.html"
     success_url = reverse_lazy("monitor:teammember-list")
 
 
@@ -155,11 +158,13 @@ class TeamMemberUpdateView(LoginRequiredMixin, generic.UpdateView):
         "team",
         "languages",
     )
+    template_name = "monitor/teammember/form.html"
     success_url = reverse_lazy("monitor:teammember-list")
 
 
 class TeamMemberDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = TeamMember
+    template_name = "monitor/teammember/confirm_delete.html"
     success_url = reverse_lazy("monitor:teammember-list")
 
 

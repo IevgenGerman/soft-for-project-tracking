@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Team members</h1>
+
+  <a href="{% url 'monitor:teammember-create' %}"
+     class="btn btn-success mb-3">
+    Add team member
+  </a>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Experience</th>
+        <th>Team</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for member in teammember_list %}
+        <tr>
+          <td>
+            <a href="{% url 'monitor:teammember-detail' member.slug %}">
+              {{ member.first_name }} {{ member.last_name }}
+            </a>
+          </td>
+          <td>{{ member.role }}</td>
+          <td>{{ member.years_of_experience }} yrs</td>
+          <td>{{ member.team|default:"—" }}</td>
+          <td>
+            <a href="{% url 'monitor:teammember-update' member.slug %}"
+               title="Update"
+               class="btn btn-outline-secondary btn-sm">
+              &#128295;
+            </a>
+            <a href="{% url 'monitor:teammember-delete' member.slug %}"
+               title="Delete"
+               class="btn btn-outline-danger btn-sm">
+              &#10060;
+            </a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">There are no team members yet.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
