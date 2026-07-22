@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ project.name }}</h1>
+
+  <p>
+    <strong>Location:</strong>
+    <a href="{% url 'monitor:location-detail' project.location.slug %}">
+      {{ project.location }}
+    </a>
+  </p>
+  <p>
+    <strong>Team:</strong>
+    <a href="{% url 'monitor:team-detail' project.team.slug %}">
+      {{ project.team }}
+    </a>
+  </p>
+  <p><strong>Start date:</strong> {{ project.start_date }}</p>
+  <p><strong>End date:</strong> {{ project.end_date|default:"—" }}</p>
+  <p><strong>Progress:</strong> {{ project.progress_percent }}%</p>
+  <p><strong>Payment:</strong> {{ project.payment_percent }}%</p>
+
+  <div class="d-flex gap-2">
+    <a href="{% url 'monitor:project-update' project.slug %}"
+       title="Update"
+       class="btn btn-outline-secondary btn-sm">
+      &#128295;
+    </a>
+    <a href="{% url 'monitor:project-delete' project.slug %}"
+       title="Delete"
+       class="btn btn-outline-danger btn-sm">
+      &#10060;
+    </a>
+    <a href="{% url 'monitor:project-list' %}" class="btn btn-secondary">
+      &larr; Back to list
+    </a>
+  </div>
+{% endblock %}

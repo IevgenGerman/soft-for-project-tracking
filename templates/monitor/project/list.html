@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Projects</h1>
+
+  <a href="{% url 'monitor:project-create' %}" class="btn btn-success mb-3">
+    Add project
+  </a>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Team</th>
+        <th>Start date</th>
+        <th>Progress</th>
+        <th>Payment</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for project in project_list %}
+        <tr>
+          <td>
+            <a href="{% url 'monitor:project-detail' project.slug %}">
+              {{ project.name }}
+            </a>
+          </td>
+          <td>{{ project.location }}</td>
+          <td>{{ project.team }}</td>
+          <td>{{ project.start_date }}</td>
+          <td>{{ project.progress_percent }}%</td>
+          <td>{{ project.payment_percent }}%</td>
+          <td>
+            <a href="{% url 'monitor:project-update' project.slug %}"
+               title="Update"
+               class="btn btn-outline-secondary btn-sm">
+              &#128295;
+            </a>
+            <a href="{% url 'monitor:project-delete' project.slug %}"
+               title="Delete"
+               class="btn btn-outline-danger btn-sm">
+              &#10060;
+            </a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="7">There are no projects yet.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

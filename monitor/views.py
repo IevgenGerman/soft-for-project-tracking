@@ -91,6 +91,7 @@ class TeamDeleteView(LoginRequiredMixin, generic.DeleteView):
 class ProjectListView(LoginRequiredMixin, generic.ListView):
     model = Project
     paginate_by = 5
+    template_name = "monitor/project/list.html"
 
     def get_queryset(self):
         return Project.objects.select_related("location", "team")
@@ -98,22 +99,26 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
 
 class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
     model = Project
+    template_name = "monitor/project/detail.html"
 
 
 class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     model = Project
     form_class = ProjectForm
+    template_name = "monitor/project/form.html"
     success_url = reverse_lazy("monitor:project-list")
 
 
 class ProjectUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Project
     form_class = ProjectForm
+    template_name = "monitor/project/form.html"
     success_url = reverse_lazy("monitor:project-list")
 
 
 class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Project
+    template_name = "monitor/project/confirm_delete.html"
     success_url = reverse_lazy("monitor:project-list")
 
 
