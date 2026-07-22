@@ -111,9 +111,7 @@ class TeamMemberListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        return TeamMember.objects.prefetch_related(
-            "languages", "team"
-        )
+        return TeamMember.objects.prefetch_related("languages", "team")
 
 
 class TeamMemberDetailView(LoginRequiredMixin, generic.DetailView):

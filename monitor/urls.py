@@ -28,7 +28,6 @@ app_name = "monitor"
 
 urlpatterns = [
     path("", index, name="index"),
-
     path("locations/", LocationListView.as_view(), name="location-list"),
     path(
         "locations/create/",
@@ -50,7 +49,6 @@ urlpatterns = [
         LocationDeleteView.as_view(),
         name="location-delete",
     ),
-
     path("teams/", TeamListView.as_view(), name="team-list"),
     path("teams/create/", TeamCreateView.as_view(), name="team-create"),
     path(
@@ -68,7 +66,6 @@ urlpatterns = [
         TeamDeleteView.as_view(),
         name="team-delete",
     ),
-
     path("projects/", ProjectListView.as_view(), name="project-list"),
     path(
         "projects/create/",
@@ -90,7 +87,6 @@ urlpatterns = [
         ProjectDeleteView.as_view(),
         name="project-delete",
     ),
-
     path(
         "team-members/",
         TeamMemberListView.as_view(),

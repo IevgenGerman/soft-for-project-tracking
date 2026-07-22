@@ -68,9 +68,7 @@ class Project(models.Model):
     location = models.ForeignKey(
         Location, on_delete=models.CASCADE, related_name="projects"
     )
-    team = models.ForeignKey(
-        Team, on_delete=models.CASCADE, related_name="projects"
-    )
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="projects")
 
     class Meta:
         ordering = ["-start_date"]
@@ -90,9 +88,7 @@ class Project(models.Model):
 class TeamMember(AbstractUser):
     years_of_experience = models.PositiveSmallIntegerField()
     role = models.CharField(max_length=100)
-    license_number = models.CharField(
-        max_length=50, blank=True, null=True
-    )
+    license_number = models.CharField(max_length=50, blank=True, null=True)
     slug = models.SlugField(max_length=255, blank=True)
     team = models.ForeignKey(
         Team,
@@ -101,9 +97,7 @@ class TeamMember(AbstractUser):
         null=True,
         blank=True,
     )
-    languages = models.ManyToManyField(
-        Language, related_name="speakers", blank=True
-    )
+    languages = models.ManyToManyField(Language, related_name="speakers", blank=True)
 
     class Meta:
         verbose_name = "team member"
@@ -113,9 +107,7 @@ class TeamMember(AbstractUser):
         return f"{self.username} ({self.first_name} {self.last_name})"
 
     def get_absolute_url(self):
-        return reverse(
-            "monitor:teammember-detail", kwargs={"slug": self.slug}
-        )
+        return reverse("monitor:teammember-detail", kwargs={"slug": self.slug})
 
     def save(self, *args, **kwargs):
         if not self.slug:
