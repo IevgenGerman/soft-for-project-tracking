@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Project Tracking Home</h1>
+  <p>Overview of the current tracking system state.</p>
+
+  <h2>Summary</h2>
+  <ul>
+    <li><strong>Locations:</strong> {{ num_locations }}</li>
+    <li><strong>Teams:</strong> {{ num_teams }}</li>
+    <li><strong>Projects:</strong> {{ num_projects }}</li>
+    <li><strong>Team members:</strong> {{ num_team_members }}</li>
+  </ul>
+
+  <p>
+    You have visited this page
+    {{ num_visits }} time{{ num_visits|pluralize }}.
+  </p>
+{% endblock %}
