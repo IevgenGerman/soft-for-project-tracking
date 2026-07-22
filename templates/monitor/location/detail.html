@@ -19,17 +19,19 @@
     {% endfor %}
   </ul>
 
-  <a href="{% url 'monitor:location-update' location.slug %}"
-     title="Update"
-     class="btn btn-outline-secondary btn-sm">
-    &#128295;
-  </a>
-  <a href="{% url 'monitor:location-delete' location.slug %}"
-     title="Delete"
-     class="btn btn-outline-danger btn-sm">
-    &#10060;
-  </a>
-  <a href="{% url 'monitor:location-list' %}" class="btn btn-secondary">
-    Back to list
-  </a>
+  <div class="d-flex gap-2">
+    <a href="{% url 'monitor:location-update' location.slug %}"
+       title="Update"
+       class="btn btn-outline-secondary btn-sm">
+      &#128295;
+    </a>
+    <a href="{% url 'monitor:location-delete' location.slug %}"
+       title="Delete"
+       class="btn btn-outline-danger btn-sm">
+      &#10060;
+    </a>
+    <a href="{% url 'monitor:location-list' %}" class="btn btn-secondary">
+      &larr; Back to list
+    </a>
+  </div>
 {% endblock %}

@@ -4,9 +4,9 @@
 {% block content %}
   <h1>
     {% if form.instance.pk %}
-      Update location
+      Update team
     {% else %}
-      Add location
+      Add team
     {% endif %}
   </h1>
 
@@ -15,7 +15,7 @@
     {{ form|crispy }}
     <div class="d-flex gap-2 mt-3">
       <button type="submit" class="btn btn-success">Save</button>
-      <a href="{% url 'monitor:location-list' %}" class="btn btn-secondary">
+      <a href="{% url 'monitor:team-list' %}" class="btn btn-secondary">
         &larr; Back to list
       </a>
     </div>

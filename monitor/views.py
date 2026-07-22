@@ -59,27 +59,32 @@ class LocationDeleteView(LoginRequiredMixin, generic.DeleteView):
 class TeamListView(LoginRequiredMixin, generic.ListView):
     model = Team
     paginate_by = 5
+    template_name = "monitor/team/list.html"
 
 
 class TeamDetailView(LoginRequiredMixin, generic.DetailView):
     model = Team
     queryset = Team.objects.prefetch_related("members", "projects")
+    template_name = "monitor/team/detail.html"
 
 
 class TeamCreateView(LoginRequiredMixin, generic.CreateView):
     model = Team
     fields = ("name",)
+    template_name = "monitor/team/form.html"
     success_url = reverse_lazy("monitor:team-list")
 
 
 class TeamUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Team
     fields = ("name",)
+    template_name = "monitor/team/form.html"
     success_url = reverse_lazy("monitor:team-list")
 
 
 class TeamDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Team
+    template_name = "monitor/team/confirm_delete.html"
     success_url = reverse_lazy("monitor:team-list")
 
 

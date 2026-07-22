@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Teams</h1>
+
+  <a href="{% url 'monitor:team-create' %}" class="btn btn-success mb-3">
+    Add team
+  </a>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for team in team_list %}
+        <tr>
+          <td>
+            <a href="{% url 'monitor:team-detail' team.slug %}">
+              {{ team.name }}
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'monitor:team-update' team.slug %}"
+               title="Update"
+               class="btn btn-outline-secondary btn-sm">
+              &#128295;
+            </a>
+            <a href="{% url 'monitor:team-delete' team.slug %}"
+               title="Delete"
+               class="btn btn-outline-danger btn-sm">
+              &#10060;
+            </a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="2">There are no teams yet.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
