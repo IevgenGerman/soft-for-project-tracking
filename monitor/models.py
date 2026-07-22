@@ -96,8 +96,10 @@ class TeamMember(AbstractUser):
     slug = models.SlugField(max_length=255, blank=True)
     team = models.ForeignKey(
         Team,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="members",
+        null=True,
+        blank=True,
     )
     languages = models.ManyToManyField(
         Language, related_name="speakers", blank=True
