@@ -30,20 +30,22 @@ class LocationListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
     template_name = "monitor/location/list.html"
 
+
 class LocationDetailView(LoginRequiredMixin, generic.DetailView):
     model = Location
     template_name = "monitor/location/detail.html"
 
+
 class LocationCreateView(LoginRequiredMixin, generic.CreateView):
     model = Location
-    fields = "__all__"
+    fields = ("country", "city")
     template_name = "monitor/location/form.html"
     success_url = reverse_lazy("monitor:location-list")
 
 
 class LocationUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Location
-    fields = "__all__"
+    fields = ("country", "city")
     template_name = "monitor/location/form.html"
     success_url = reverse_lazy("monitor:location-list")
 
@@ -66,13 +68,13 @@ class TeamDetailView(LoginRequiredMixin, generic.DetailView):
 
 class TeamCreateView(LoginRequiredMixin, generic.CreateView):
     model = Team
-    fields = "__all__"
+    fields = ("name",)
     success_url = reverse_lazy("monitor:team-list")
 
 
 class TeamUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Team
-    fields = "__all__"
+    fields = ("name",)
     success_url = reverse_lazy("monitor:team-list")
 
 
