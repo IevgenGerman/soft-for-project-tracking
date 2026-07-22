@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h1>Sign up</h1>
+  <form action="" method="post" novalidate>
+    {% csrf_token %}
+    {{ form|crispy }}
+
+    <input type="submit" value="Register" class="btn btn-primary">
+    <a href="{% url 'login' %}" class="btn btn-secondary">
+      Already have an account? Login
+    </a>
+  </form>
+{% endblock %}

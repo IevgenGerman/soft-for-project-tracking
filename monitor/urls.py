@@ -11,6 +11,7 @@ from monitor.views import (
     ProjectDetailView,
     ProjectListView,
     ProjectUpdateView,
+    SignUpView,
     TeamCreateView,
     TeamDeleteView,
     TeamDetailView,
@@ -28,6 +29,7 @@ app_name = "monitor"
 
 urlpatterns = [
     path("", index, name="index"),
+    path("signup/", SignUpView.as_view(), name="signup"),
     path("locations/", LocationListView.as_view(), name="location-list"),
     path(
         "locations/create/",

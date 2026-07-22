@@ -1,3 +1,4 @@
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
@@ -145,3 +146,15 @@ class TeamMemberUpdateView(LoginRequiredMixin, generic.UpdateView):
 class TeamMemberDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = TeamMember
     success_url = reverse_lazy("monitor:teammember-list")
+
+
+class SignUpView(generic.CreateView):
+    model = TeamMember
+    form_class = TeamMemberCreationForm
+    template_name = "registration/signup.html"
+    success_url = reverse_lazy("monitor:index")
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        login(self.request, self.object)
+        return response
