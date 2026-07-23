@@ -1,24 +1,88 @@
-{% extends "base.html" %}
-{% load crispy_forms_tags %}
+{% extends "auth_base.html" %}
 
-{% block content %}
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
+{% block title %}<title>Login &middot; Project Tracking</title>{% endblock %}
 
-  <h1>Login</h1>
+{% block auth_content %}
+  <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5
+              w-100 fmxw-500">
+    <div class="text-center text-md-center mb-4 mt-md-0">
+      <h1 class="mb-0 h3">Sign In</h1>
+      <p class="mb-4">Add your credentials</p>
+    </div>
 
-  {% if next %}
-    <p>Please login to see this page.</p>
-  {% endif %}
+    {% if form.errors %}
+      <div class="alert alert-danger" role="alert">
+        Your username and password didn't match. Please try again.
+      </div>
+    {% endif %}
 
-  <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form|crispy }}
+    {% if next %}
+      <div class="alert alert-warning" role="alert">
+        Please login to see this page.
+      </div>
+    {% endif %}
 
-    <input type="submit" value="Login" class="btn btn-primary">
-    <input type="hidden" name="next" value="{{ next }}">
-  </form>
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
 
-  <a href="{% url 'monitor:signup' %}">Don't have an account? Sign up</a>
+      <div class="form-group mb-4">
+        <label for="{{ form.username.id_for_label }}">Username</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                 fill="currentColor" class="bi bi-person-fill"
+                 viewBox="0 0 16 16">
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0
+                       0-6 3 3 0 0 0 0 6"/>
+            </svg>
+          </span>
+          <input type="text"
+                 name="{{ form.username.html_name }}"
+                 class="form-control{% if form.username.errors %} is-invalid{% endif %}"
+                 id="{{ form.username.id_for_label }}"
+                 placeholder="Your username"
+                 autofocus
+                 required>
+        </div>
+      </div>
+
+      <div class="form-group mb-4">
+        <label for="{{ form.password.id_for_label }}">Password</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                 fill="currentColor" class="bi bi-lock-fill"
+                 viewBox="0 0 16 16">
+              <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0
+                       0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0
+                       2-2V9a2 2 0 0 0-2-2"/>
+            </svg>
+          </span>
+          <input type="password"
+                 name="{{ form.password.html_name }}"
+                 class="form-control{% if form.password.errors %} is-invalid{% endif %}"
+                 id="{{ form.password.id_for_label }}"
+                 placeholder="Password"
+                 required>
+        </div>
+      </div>
+
+      <input type="hidden" name="next" value="{{ next }}">
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-gray-800 btn-lg">
+          Sign In
+        </button>
+      </div>
+    </form>
+
+    <div class="d-flex justify-content-center align-items-center mt-4">
+      <span class="fw-normal">
+        Not registered?
+        <a href="{% url 'monitor:signup' %}" class="fw-bold">
+          Create account
+        </a>
+      </span>
+    </div>
+  </div>
 {% endblock %}

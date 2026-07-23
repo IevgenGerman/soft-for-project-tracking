@@ -1,0 +1,43 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% block title %}<title>Project Tracking</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+        href="{% static 'assets/vendor/bootstrap/dist/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/volt.min.css' %}">
+</head>
+
+<body>
+  <main>
+    <section class="vh-100 d-flex align-items-center justify-content-center">
+      <div class="container">
+        <p class="text-center mb-4">
+          <a href="{% url 'monitor:index' %}"
+             class="d-flex align-items-center justify-content-center
+                    text-dark fw-bold">
+            Project Tracking
+          </a>
+        </p>
+        <div class="row justify-content-center form-bg-image"
+             data-background-lg="{% static 'assets/img/illustrations/signin.svg' %}">
+          <div class="col-12 d-flex align-items-center justify-content-center">
+            {% block auth_content %}{% endblock %}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script
+    src="{% static 'assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}">
+  </script>
+  <script
+    src="{% static 'assets/vendor/sweetalert2/dist/sweetalert2.all.min.js' %}">
+  </script>
+  <script src="{% static 'assets/js/volt.js' %}"></script>
+</body>
+
+</html>

@@ -1,15 +1,33 @@
-{% extends "base.html" %}
+{% extends "auth_base.html" %}
 {% load crispy_forms_tags %}
 
-{% block content %}
-  <h1>Sign up</h1>
-  <form action="" method="post" novalidate>
-    {% csrf_token %}
-    {{ form|crispy }}
+{% block title %}<title>Sign Up &middot; Project Tracking</title>{% endblock %}
 
-    <input type="submit" value="Register" class="btn btn-primary">
-    <a href="{% url 'login' %}" class="btn btn-secondary">
-      Already have an account? Login
-    </a>
-  </form>
+{% block auth_content %}
+  <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5
+              w-100 fmxw-999"
+       style="max-height: 90vh; overflow-y: auto;">
+    <div class="text-center text-md-center mb-4 mt-md-0">
+      <h1 class="mb-0 h3">Create Account</h1>
+      <p class="mb-4">Fill in the fields below to register</p>
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+
+      <div class="d-grid mt-4">
+        <button type="submit" class="btn btn-gray-800 btn-lg">
+          Sign Up
+        </button>
+      </div>
+    </form>
+
+    <div class="d-flex justify-content-center align-items-center mt-4">
+      <span class="fw-normal">
+        Already have an account?
+        <a href="{% url 'login' %}" class="fw-bold">Sign In</a>
+      </span>
+    </div>
+  </div>
 {% endblock %}
