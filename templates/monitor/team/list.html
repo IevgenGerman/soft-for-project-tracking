@@ -1,45 +1,87 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Teams</h1>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="h3 mb-0">Team List</h1>
+      <p class="mb-0 text-gray-500">
+        Teams working on tracked projects.
+      </p>
+    </div>
+    <a href="{% url 'monitor:team-create' %}"
+       class="btn btn-gray-800">
+      Add team
+    </a>
+  </div>
 
-  <a href="{% url 'monitor:team-create' %}" class="btn btn-success mb-3">
-    Add team
-  </a>
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for team in team_list %}
-        <tr>
-          <td>
-            <a href="{% url 'monitor:team-detail' team.slug %}">
-              {{ team.name }}
-            </a>
-          </td>
-          <td>
-            <a href="{% url 'monitor:team-update' team.slug %}"
-               title="Update"
-               class="btn btn-outline-secondary btn-sm">
-              &#128295;
-            </a>
-            <a href="{% url 'monitor:team-delete' team.slug %}"
-               title="Delete"
-               class="btn btn-outline-danger btn-sm">
-              &#10060;
-            </a>
-          </td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="2">There are no teams yet.</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="card border-0 shadow">
+    <div class="table-responsive">
+      <table class="table table-hover align-items-center mb-0">
+        <thead class="thead-light">
+          <tr>
+            <th class="border-0 text-gray-500 small text-uppercase">#</th>
+            <th class="border-0 text-gray-500 small text-uppercase">
+              Name
+            </th>
+            <th class="border-0 text-gray-500 small text-uppercase">
+              Update
+            </th>
+            <th class="border-0 text-gray-500 small text-uppercase">
+              Delete
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for team in team_list %}
+            <tr>
+              <td class="fw-bold">{{ forloop.counter }}</td>
+              <td>
+                <a href="{% url 'monitor:team-detail' team.slug %}"
+                   class="fw-bold text-gray-900">
+                  {{ team.name }}
+                </a>
+              </td>
+              <td>
+                <a href="{% url 'monitor:team-update' team.slug %}"
+                   title="Update"
+                   class="text-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18"
+                       height="18" fill="currentColor" class="bi bi-pencil"
+                       viewBox="0 0 16 16">
+                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1
+                             0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0
+                             0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zm.854
+                             1.707L10.207 3l1.586 1.586 2.793-2.793zM9.5
+                             3.707 3 10.207V11h.5a.5.5 0 0 1 .5.5v.5h.5a.5
+                             .5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761
+                             9.339-.792 1.984 1.984-.792z"/>
+                  </svg>
+                </a>
+              </td>
+              <td>
+                <a href="{% url 'monitor:team-delete' team.slug %}"
+                   title="Delete"
+                   class="text-danger">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18"
+                       height="18" fill="currentColor" class="bi bi-x-lg"
+                       viewBox="0 0 16 16">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146
+                             -5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a
+                             .5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5
+                             0 0 1-.708-.708L7.293 8z"/>
+                  </svg>
+                </a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="4" class="text-center text-gray-500 py-4">
+                There are no teams yet.
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 {% endblock %}
