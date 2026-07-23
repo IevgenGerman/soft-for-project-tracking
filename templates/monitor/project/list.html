@@ -10,7 +10,7 @@
     </div>
     <a href="{% url 'monitor:project-create' %}"
        class="btn btn-gray-800">
-      Add project
+      + Add project
     </a>
   </div>
 
@@ -52,7 +52,7 @@
               <td class="fw-bold">{{ forloop.counter }}</td>
               <td>
                 <a href="{% url 'monitor:project-detail' project.slug %}"
-                   class="fw-bold text-gray-900">
+                   class="fw-bold text-info">
                   {{ project.name }}
                 </a>
               </td>
@@ -83,7 +83,7 @@
               <td>
                 <a href="{% url 'monitor:project-update' project.slug %}"
                    title="Update"
-                   class="text-primary">
+                   class="text-info">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18"
                        height="18" fill="currentColor" class="bi bi-pencil"
                        viewBox="0 0 16 16">

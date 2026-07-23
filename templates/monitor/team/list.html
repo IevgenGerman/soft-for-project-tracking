@@ -10,7 +10,7 @@
     </div>
     <a href="{% url 'monitor:team-create' %}"
        class="btn btn-gray-800">
-      Add team
+      + Add team
     </a>
   </div>
 
@@ -37,14 +37,14 @@
               <td class="fw-bold">{{ forloop.counter }}</td>
               <td>
                 <a href="{% url 'monitor:team-detail' team.slug %}"
-                   class="fw-bold text-gray-900">
+                   class="fw-bold text-info">
                   {{ team.name }}
                 </a>
               </td>
               <td>
                 <a href="{% url 'monitor:team-update' team.slug %}"
                    title="Update"
-                   class="text-primary">
+                   class="text-info">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18"
                        height="18" fill="currentColor" class="bi bi-pencil"
                        viewBox="0 0 16 16">
