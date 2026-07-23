@@ -93,9 +93,7 @@ class PrivateLocationTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 302)
-        self.assertTrue(
-            Location.objects.filter(city="Berlin").exists()
-        )
+        self.assertTrue(Location.objects.filter(city="Berlin").exists())
 
 
 class PrivateTeamTests(TestCase):
@@ -112,9 +110,8 @@ class PrivateTeamTests(TestCase):
         response = self.client.get(TEAM_LIST_URL)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            list(response.context["team_list"]), list(Team.objects.all())
-        )
+        self.assertEqual(list(response.context["team_list"]),
+                         list(Team.objects.all()))
 
     def test_create_team(self):
         response = self.client.post(
@@ -131,9 +128,7 @@ class PrivateProjectTests(TestCase):
             username="test_user", password="password123"
         )
         self.client.force_login(self.user)
-        self.location = Location.objects.create(
-            country="Ukraine", city="Kyiv"
-        )
+        self.location = Location.objects.create(country="Ukraine", city="Kyiv")
         self.team = Team.objects.create(name="Automation")
 
     def test_retrieve_projects(self):
@@ -168,9 +163,8 @@ class PrivateProjectTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 302)
-        self.assertTrue(
-            Project.objects.filter(name="Substation Upgrade").exists()
-        )
+        self.assertTrue(Project.objects.filter(
+            name="Substation Upgrade").exists())
 
 
 class PrivateTeamMemberTests(TestCase):

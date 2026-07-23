@@ -45,7 +45,8 @@ class TeamMemberAdmin(UserAdmin):
         "team",
         "role",
         "years_of_experience",
-        "license_number")
+        "license_number",
+    )
     list_filter = UserAdmin.list_filter + ("team", "role")
     filter_horizontal = UserAdmin.filter_horizontal + ("languages",)
     fieldsets = UserAdmin.fieldsets + (

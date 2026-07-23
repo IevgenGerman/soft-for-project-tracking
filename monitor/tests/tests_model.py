@@ -5,9 +5,7 @@ from monitor.models import Language, Location, Project, Team, TeamMember
 
 class LocationModelTests(TestCase):
     def setUp(self):
-        self.location = Location.objects.create(
-            country="Ukraine", city="Kyiv"
-        )
+        self.location = Location.objects.create(country="Ukraine", city="Kyiv")
 
     def test_str(self):
         self.assertEqual(str(self.location), "Kyiv, Ukraine")
@@ -52,9 +50,7 @@ class LanguageModelTests(TestCase):
 
 class ProjectModelTests(TestCase):
     def setUp(self):
-        self.location = Location.objects.create(
-            country="Ukraine", city="Kyiv"
-        )
+        self.location = Location.objects.create(country="Ukraine", city="Kyiv")
         self.team = Team.objects.create(name="Automation")
         self.project = Project.objects.create(
             name="Substation Upgrade",
