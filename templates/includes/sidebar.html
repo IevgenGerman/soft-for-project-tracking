@@ -4,7 +4,7 @@
 
     {% if user.is_authenticated %}
       <div class="user-card d-flex align-items-center justify-content-between
-                  pb-4">
+                  pb-4 border-bottom border-white">
         <div class="d-flex align-items-center">
           <div class="avatar-md rounded-circle bg-gray-700 d-flex
                       align-items-center justify-content-center me-3">
@@ -23,8 +23,9 @@
     {% endif %}
 
     <a href="{% url 'monitor:index' %}"
-       class="d-flex align-items-center pb-3 mb-3 text-white
-              text-decoration-none border-bottom border-white">
+       class="d-flex align-items-center justify-content-center
+              py-3 my-3 text-white text-decoration-none
+              border-bottom border-white">
       <span class="fs-6 fw-bold">Project Tracking</span>
     </a>
 
