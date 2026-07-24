@@ -68,10 +68,7 @@ class Project(models.Model):
     location = models.ForeignKey(
         Location, on_delete=models.CASCADE, related_name="projects"
     )
-    team = models.ForeignKey(
-        Team,
-        on_delete=models.CASCADE,
-        related_name="projects")
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="projects")
 
     class Meta:
         ordering = ["-start_date"]
@@ -80,9 +77,7 @@ class Project(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse(
-            "monitor:project-detail",
-            kwargs={"slug": self.slug})
+        return reverse("monitor:project-detail", kwargs={"slug": self.slug})
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -111,15 +106,13 @@ class TeamMember(AbstractUser):
     class Meta:
         verbose_name = "team member"
         verbose_name_plural = "team members"
+        ordering = ["username"]
 
     def __str__(self):
         return f"{self.username} ({self.first_name} {self.last_name})"
 
     def get_absolute_url(self):
-        return reverse(
-            "monitor:teammember-detail",
-            kwargs={"slug": self.slug}
-        )
+        return reverse("monitor:teammember-detail", kwargs={"slug": self.slug})
 
     def save(self, *args, **kwargs):
         if not self.slug:

@@ -110,8 +110,7 @@ class PrivateTeamTests(TestCase):
         response = self.client.get(TEAM_LIST_URL)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(list(response.context["team_list"]),
-                         list(Team.objects.all()))
+        self.assertEqual(list(response.context["team_list"]), list(Team.objects.all()))
 
     def test_create_team(self):
         response = self.client.post(
@@ -163,8 +162,7 @@ class PrivateProjectTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 302)
-        self.assertTrue(Project.objects.filter(
-            name="Substation Upgrade").exists())
+        self.assertTrue(Project.objects.filter(name="Substation Upgrade").exists())
 
 
 class PrivateTeamMemberTests(TestCase):
@@ -198,7 +196,5 @@ class SignUpTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 302)
-        self.assertTrue(
-            get_user_model().objects.filter(username="newmember").exists()
-        )
+        self.assertTrue(get_user_model().objects.filter(username="newmember").exists())
         self.assertTrue(response.wsgi_request.user.is_authenticated)

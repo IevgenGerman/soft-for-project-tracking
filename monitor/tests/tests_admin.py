@@ -85,10 +85,7 @@ class AdminAccessTests(TestCase):
         self.assertContains(response, 'name="license_number"')
 
     def test_teammember_change_page_shows_team_info_fields(self):
-        url = reverse(
-            "admin:monitor_teammember_change",
-            args=[self.admin_user.pk]
-        )
+        url = reverse("admin:monitor_teammember_change", args=[self.admin_user.pk])
 
         response = self.client.get(url)
 
