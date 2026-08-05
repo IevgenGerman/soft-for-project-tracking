@@ -3,7 +3,6 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 ALLOWED_HOSTS = []
-#ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
@@ -20,3 +19,21 @@ DATABASES = {
         "PORT": int(os.environ.get("POSTGRES_DB_PORT")),
     }
 }
+
+# ==============================================================================
+# Security & SSL / HSTS Settings for Production
+# ==============================================================================
+
+# HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_SECONDS = 31536000  # 1 рік (виправляє warning W004)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# HTTPS enforcement & Cookies Security
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
